@@ -11,3 +11,4 @@ MONGO_URI = os.getenv("MONGO_URI")
 client = MongoClient(MONGO_URI)
 db = client.automatweet
 twitter_accounts_collection = db.twitter_accounts
+hashtags_collection = db.twitter_hashtags
