@@ -1,6 +1,6 @@
 from accounts.mongo import twitter_accounts_collection
 from utils.print_color_utils import print_header,print_error,print_success,print_warning,print_info,print_highlight,print_debug,get_user_input
-
+from bot.client_provider import verify_twitter_credentials
 
 def add_twitter_account():
     print_header("Add a new Twitter account")
@@ -23,6 +23,11 @@ def add_twitter_account():
             return
     except Exception as e:
         print_error(f"Failed to check for existing username: {e}")
+        return
+    
+        # Check if the credentials are valid before saving
+    if not verify_twitter_credentials(api_key, api_secret, bearer_token, access_token, access_token_secret):
+        print_error("Invalid Twitter API credentials. Please check and try again.")
         return
 
     try:
