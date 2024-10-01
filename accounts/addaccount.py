@@ -1,6 +1,6 @@
 from accounts.mongo import twitter_accounts_collection
 from utils.print_color_utils import print_header,print_error,print_success,print_warning,print_info,print_highlight,print_debug,get_user_input
-from bot.client_provider import verify_twitter_credentials
+from bot.auth_provider import verify_twitter_credentials
 
 def add_twitter_account():
     print_header("Add a new Twitter account")

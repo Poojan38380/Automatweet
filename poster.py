@@ -4,7 +4,7 @@ from datetime import datetime
 from accounts.select_accounts import select_twitter_account
 from accounts.get_credentials import get_twitter_account_details, get_all_twitter_account_details
 from accounts.topics import get_topics_by_username
-from bot.client_provider import get_twitter_client
+from bot.auth_provider import get_twitter_client
 from bot.tweet_poster import post_tweet
 from gpt.generate_prompt import create_tweet_prompt
 from gpt.gpt_client import use_gpt
