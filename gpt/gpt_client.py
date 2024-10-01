@@ -1,6 +1,7 @@
 import asyncio
 from asyncio import WindowsSelectorEventLoopPolicy
 from g4f.client import Client
+from utils.print_color_utils import print_header,print_error,print_success,print_warning,print_info,print_highlight,print_debug,get_user_input
 
 # Set the event loop policy to avoid the warning
 asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())

@@ -1,21 +1,4 @@
-from accounts.select_accounts import select_twitter_account
-from accounts.get_credentials import get_twitter_account_details
-from accounts.addaccount import add_twitter_account
-from bot.client_provider import get_twitter_client
-from bot.tweet_poster import post_tweet
-
-username = select_twitter_account("Select an account")
-
-print(username)
+from poster import post_to_single_account,post_5_strategy
+from utils.print_color_utils import print_header,print_error,print_success,print_warning,print_info,print_highlight,print_debug,get_user_input
 
 
-details = get_twitter_account_details(username)
-
-print(details)
-
-
-client = get_twitter_client(details)
-
-print(client)
-
-post_tweet(client,"This is a tweet")

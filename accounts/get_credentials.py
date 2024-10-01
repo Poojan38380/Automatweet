@@ -1,5 +1,5 @@
 from accounts.mongo import twitter_accounts_collection
-from utils.print_color_utils import print_error, print_success
+from utils.print_color_utils import print_header,print_error,print_success,print_warning,print_info,print_highlight,print_debug,get_user_input
 
 def get_twitter_account_details(username):
     try:
@@ -15,3 +15,21 @@ def get_twitter_account_details(username):
     except Exception as e:
         print_error(f"Failed to retrieve account details: {e}")
         return None
+
+
+
+def get_all_twitter_account_details():
+    try:
+        # Retrieve all account details from the collection, excluding the _id field
+        all_accounts = twitter_accounts_collection.find({}, {"_id": 0})
+
+        account_list = list(all_accounts)
+        if account_list:
+            print_success("All account details retrieved successfully.")
+            return account_list
+        else:
+            print_error("No accounts found in the collection.")
+            return []
+    except Exception as e:
+        print_error(f"Failed to retrieve account details: {e}")
+        return []

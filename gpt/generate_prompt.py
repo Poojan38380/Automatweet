@@ -1,5 +1,5 @@
 import random
-from utils.print_color_utils import print_header, print_error, print_success, print_warning, print_info, get_user_input
+from utils.print_color_utils import print_header,print_error,print_success,print_warning,print_info,print_highlight,print_debug,get_user_input
 
 wildcards = [
     "mention a famous twitter user",

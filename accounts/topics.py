@@ -74,3 +74,14 @@ def remove_topics_from_twitter_account():
 
     except ValueError:
         print_error("Invalid input. Please enter valid numbers separated by commas.")
+
+
+
+def get_topics_for_all_accounts():
+    try:
+        accounts = twitter_accounts_collection.find({}, {"_id": 0, "username": 1, "topics": 1})
+        all_accounts_topics = {account['username']: account.get('topics', []) for account in accounts}
+        return all_accounts_topics
+    except Exception as e:
+        print_error(f"Failed to retrieve topics for all accounts: {e}")
+        return {}
