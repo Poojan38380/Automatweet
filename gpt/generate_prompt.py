@@ -3,7 +3,6 @@ from utils.print_color_utils import print_header, print_error, print_success, pr
 
 wildcards = [
     "mention a famous twitter user",
-    "use a bunch of emojis",
     "ask people to follow your account",
     "try to inspire the audience",
     "talk shit about something random",
@@ -24,14 +23,13 @@ wildcards = [
 ]
 
 def create_tweet_prompt(keywords=[]):
-    # 50% chance to use a keyword or wildcard
-    use_keyword = random.choice([True, False])
+    # 70% chance to use a keyword or 30% to use a wildcard
+    use_keyword = random.random() < 0.7
 
     # Select random wildcard or keyword
     if use_keyword and keywords:
         keyword = random.choice(keywords)
 
-    
         # Randomly decide whether to add tag/hashtag
         use_hashtag = random.choice([True, False])
         
@@ -39,18 +37,18 @@ def create_tweet_prompt(keywords=[]):
         use_tag_celebrity = random.choice([True, False])
         
         # Create a base prompt for the LLM to generate a sarcastic tweet
-        prompt = f"""Tweet something sarcastic about {keyword} that could go viral.
-        - Keep it within the 280 character limit.
-        - Avoid using emojis.
-        - The tweet should have a witty, humorous, and sharp tone that resonates with the audience. """
+        prompt = f"""Tweet something sarcastic about "{keyword}" that could go viral.
+- Keep it within the 280 character limit.
+- Avoid using emojis.
+- The tweet should have a witty, humorous, and sharp tone that resonates with the audience. """
 
         # Add hashtags instruction if selected
         if use_hashtag:
-                prompt += f"\nFeel free to include trending hashtags based on current global events or trends related to {keyword}."
+            prompt += f"\nFeel free to include trending hashtags based on current global events or trends related to {keyword}."
 
         # Add mention instruction if selected
         if use_tag_celebrity:
-                prompt += f"\nFeel free to tag any relevant famous person who could add to the viral potential."
+            prompt += f"\nFeel free to tag any relevant famous person who could add to the viral potential."
 
     else:
         topic = random.choice(wildcards)
@@ -59,13 +57,12 @@ def create_tweet_prompt(keywords=[]):
 - Tweet something sarcastic or funny.
 - Keep it within the 280 character limit.
 - Avoid using emojis."""
-        
+
         # Randomly decide whether to add a celebrity mention
         use_tag_celebrity = random.choice([True, False])
         
         # Add mention instruction if selected
         if use_tag_celebrity:
-                prompt += f"\nFeel free to tag any relevant famous person."
+            prompt += f"\nFeel free to tag any relevant famous person."
         
-
     return prompt

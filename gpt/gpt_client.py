@@ -9,6 +9,7 @@ def use_gpt(prompt):
     client = Client()
     # Generate tweet content
     response = client.chat.completions.create(
+        #can change to a different model if you want to 
         model="gpt-4o",
         messages=[{"role": "user", "content": prompt}],
     )
