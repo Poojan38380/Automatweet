@@ -1,9 +1,13 @@
-import dotenv
 import requests
+import os
+
 from accounts.mongo import hashtags_collection
+from dotenv import load_dotenv
+# Load environment variables from the .env file
+load_dotenv()
 def get_ritelit_hashtags():
     headers = {
-        'Authorization': 'Bearer process.env.RITEKIT_BEARER_TOKEN'
+        'Authorization': f"Bearer {os.getenv('RITEKIT_BEARER_TOKEN')}"
     }
 
     # Request the trending hashtags from the RiteKit API
