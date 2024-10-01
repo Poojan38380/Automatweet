@@ -37,32 +37,35 @@ def create_tweet_prompt(keywords=[]):
         use_tag_celebrity = random.choice([True, False])
         
         # Create a base prompt for the LLM to generate a sarcastic tweet
-        prompt = f"""Tweet something sarcastic about "{keyword}" that could go viral.
-- Keep it within the 280 character limit.
+        prompt = f"""Write a sarcastic tweet that is sharp and likely to go viral about "{keyword}".
+- Maximum 280 characters.
 - Avoid using emojis.
-- The tweet should have a witty, humorous, and sharp tone that resonates with the audience. """
+- Make it witty, edgy, and humorous, with a tone that grabs attention immediately.
+- Make the audience feel part of an inside joke, encouraging retweets and comments."""
 
         # Add hashtags instruction if selected
         if use_hashtag:
-            prompt += f"\nFeel free to include trending hashtags based on current global events or trends related to {keyword}."
+            prompt += f"\n- Add a trending hashtag related to {keyword} or current global events for extra traction."
 
         # Add mention instruction if selected
         if use_tag_celebrity:
-            prompt += f"\nFeel free to tag any relevant famous person who could add to the viral potential."
+            prompt += f"\n- Consider tagging a famous person or influencer for extra virality."
 
     else:
         topic = random.choice(wildcards)
 
         prompt = f""""{topic}".
-- Tweet something sarcastic or funny.
-- Keep it within the 280 character limit.
-- Avoid using emojis."""
+- Write a sarcastic or humorous tweet.
+- Keep it under 280 characters.
+- Avoid using emojis.
+- Make the tone irreverent, witty, and instantly shareable.
+- Use humor or irony to draw people in."""
 
         # Randomly decide whether to add a celebrity mention
         use_tag_celebrity = random.choice([True, False])
         
         # Add mention instruction if selected
         if use_tag_celebrity:
-            prompt += f"\nFeel free to tag any relevant famous person."
+            prompt += f"\n- Optionally, tag a celebrity or influencer to boost engagement."
         
     return prompt
