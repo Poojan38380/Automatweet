@@ -61,7 +61,7 @@ wildcards = [
 
 def create_tweet_prompt(keywords=[]):
     # 70% chance to use a keyword or 30% to use a wildcard
-    use_keyword = random.random() < 0.6
+    use_keyword = random.random() < 0.7
 
     # Select random wildcard or keyword
     if use_keyword and keywords:
@@ -78,7 +78,8 @@ def create_tweet_prompt(keywords=[]):
 - Maximum 280 characters.
 - Avoid using emojis.
 - Make it witty, edgy, and humorous, with a tone that grabs attention immediately.
-- Make the audience feel part of an inside joke, encouraging retweets and comments."""
+- Make the audience feel part of an inside joke, encouraging retweets and comments.
+- Just return the tweet, nothing else."""
 
         # Add hashtags instruction if selected
         if use_hashtag:
@@ -96,7 +97,8 @@ def create_tweet_prompt(keywords=[]):
 - Keep it under 280 characters.
 - Avoid using emojis.
 - Make the tone irreverent, witty, and instantly shareable.
-- Use humor or irony to draw people in."""
+- Use humor or irony to draw people in.
+- Just return the tweet, nothing else."""
 
         # Randomly decide whether to add a celebrity mention
         use_tag_celebrity = random.choice([True, False])
