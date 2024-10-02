@@ -9,7 +9,7 @@ def generate_gpt_prompt(tweet):
 
     # Construct the prompt for GPT
     prompt = (f"""A tweet from {mention} and it says: '{tweet_content}'. "
-Keeping in mind the current global scenario, create a, viral-worthy reply(sarcastic, depending on the tweet) tweet. "
+Keeping in mind the current global scenario, create a, viral-worthy short reply tweet. (sarcastic, depending on the context) "
 Keep the tone smart.(avoid emojis and keep under 280 characters)(just give the tweet)""")
 
     return prompt
