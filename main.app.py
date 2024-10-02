@@ -12,7 +12,7 @@ def main():
         2: post_to_single_account,  
         3: post_5_strategy,  
         4: reply_main,
-        6: save_tweets_from_list,
+        # 6: save_tweets_from_list,
         7: sys.exit,
     }
 
@@ -22,9 +22,9 @@ def main():
         print("2. Post to single account")
         print("3. Post 5 times/day to a single account")
         print("4. Reply to the latest tweets in a curated list.")
-        print("5. placeholder")
-        print("5. Retrive the latest tweets from autoreply list")
-        print("6. Exit")
+        # print("5. placeholder")
+        # print("5. Retrive the latest tweets from autoreply list")
+        print("7. Exit")
 
         try:
             action = int(get_user_input("Choose an action: "))
