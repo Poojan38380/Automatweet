@@ -7,16 +7,17 @@ from accounts.get_credentials import get_twitter_account_details
 from bot.auth_provider import get_twitter_client
 
 def elon_main():
+
         username = select_twitter_account("Select account to post to:")
         credentials = get_twitter_account_details(username=username)
         client = get_twitter_client(account_data=credentials)
-
+        
         elon_tweet=get_single_elon_tweet()
         message_content = elon_tweet["message"]
         tweet_id = elon_tweet["tweet_id"]
-
-        print(f"Elon Musk tweeted: {message_content}")
-        prompt = generate_gpt_prompt(message_content)
+        posted_by = elon_tweet["user"]
+        print(f"\n{posted_by} tweeted: {message_content}\n")
+        prompt = generate_gpt_prompt(tweet=message_content)
         reply_tweet= use_gpt(prompt=prompt)
         print(reply_tweet)
 

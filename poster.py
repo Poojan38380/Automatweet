@@ -17,6 +17,7 @@ def post_to_single_account():
     topics = get_topics_by_username(username=username)
     prompt = create_tweet_prompt(keywords=topics)
     tweet = use_gpt(prompt=prompt)
+    print(tweet)
     client = get_twitter_client(account_data=credentials)
     post_tweet(client=client, tweet=tweet)
 
@@ -27,6 +28,8 @@ def single_account_poster_helper(username):
         topics = get_topics_by_username(username=username)
         prompt = create_tweet_prompt(keywords=topics)
         tweet = use_gpt(prompt=prompt)
+        print(tweet)
+
         client = get_twitter_client(account_data=credentials)
         post_tweet(client=client, tweet=tweet)
         print_success(f"Successfully posted tweet for {username} at {datetime.now().strftime('%H:%M')}")
