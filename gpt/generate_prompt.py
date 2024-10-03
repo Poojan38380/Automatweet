@@ -61,7 +61,7 @@ wildcards = [
 
 def create_tweet_prompt(keywords=[]):
     # 70% chance to use a keyword or 30% to use a wildcard
-    use_keyword = random.random() < 0.7
+    use_keyword = random.random() < 0.8
 
     # Select random wildcard or keyword
     if use_keyword and keywords:
