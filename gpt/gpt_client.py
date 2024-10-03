@@ -1,16 +1,18 @@
 import asyncio
-from asyncio import WindowsSelectorEventLoopPolicy
+import sys
 from g4f.client import Client
-from utils.print_color_utils import print_header,print_error,print_success,print_warning,print_info,print_highlight,print_debug,get_user_input
+from utils.print_color_utils import print_header, print_error, print_success, print_warning, print_info, print_highlight, print_debug, get_user_input
 
-# Set the event loop policy to avoid the warning
-asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())
+# Set the event loop policy to avoid the warning on Windows
+if sys.platform == 'win32':
+    from asyncio import WindowsSelectorEventLoopPolicy
+    asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())
 
 def use_gpt(prompt):
     client = Client()
     # Generate tweet content
     response = client.chat.completions.create(
-        #can change to a different model if you want to 
+        # Can change to a different model if you want to 
         model="gpt-4",
         messages=[{"role": "user", "content": prompt}],
     )
