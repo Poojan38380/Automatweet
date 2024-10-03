@@ -9,7 +9,7 @@ on:
     - cron: "30 19 * * *"
 
 jobs:
-  run-github-auto:
+  run-scripts:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,40 +19,35 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11.9" # Replace with the Python version you need
+          python-version: "3.11.9" # Replace with your Python version
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Log before running the script
+      - name: Log environment variables
+        run: printenv # Prints the environment variables to see if they are correctly set
+
+      - name: Log current directory
+        run: pwd # Print the current directory to ensure the correct working directory
+
+      - name: List files in directory
+        run: ls -al # List all files and directories to confirm your script is in the right place
+
+      # Run the first script
       - name: Run github.auto.py
-        if: github.event.schedule == '0 9 * * *' || github.event.schedule == '0 12 * * *' || github.event.schedule == '0 18 * * *' || github.event.schedule == '0 21 * * *'
         run: |
-          python github.auto.py
+          echo "Running github.auto.py..."
+          python github.auto.py  # Add this step to run your script
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
 
-  run-github-auto-reply:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11.9" # Same Python version for consistency
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
+      # Run the second script
       - name: Run github.auto.reply.py
-        if: github.event.schedule == '0 8 * * *' || github.event.schedule == '0 13 * * *' || github.event.schedule == '30 19 * * *'
         run: |
-          python github.auto.reply.py
+          echo "Running github.auto.reply.py..."
+          python github.auto.reply.py  # Add this step to run your second script
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
