@@ -3,7 +3,7 @@ name: Run Python Scripts
 on:
   schedule:
     # Runs github.auto.py at 9:00, 12:00, 18:00, and 21:00 UTC every day
-    - cron: "0 9,12,18,21 * * *"
+    - cron: "0 9,20 * * *"
     # Runs github.auto.reply.py at 8:00, 13:00, and 19:30 UTC every day
     - cron: "0 8,13 * * *"
     - cron: "30 19 * * *"
